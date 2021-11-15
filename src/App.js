@@ -38,15 +38,22 @@ const RecipeComponent = (props) => {
         <DialogTitle id="alert-dialog-slide-title">Ingreidients</DialogTitle>
         <DialogContent>
           <table>
-            <thead>
+            <thead style={{ textAlign: "left" }}>
+              <th>Sr No</th>
               <th>Ingreindients</th>
               <th>Weight</th>
             </thead>
             <tbody>
-              {recipeObj.ingredients.map((ingredientObj) => (
+              {recipeObj.ingredients.map((ingredientObj, index) => (
                 <tr>
+                  <td>{index + 1}</td>
                   <td>{ingredientObj.text}</td>
-                  <td>{ingredientObj.weight}</td>
+                  <td>
+                    {ingredientObj.weight.toFixed(1)}{" "}
+                    {ingredientObj.measure === "<unit>"
+                      ? "gm"
+                      : ingredientObj.measure}
+                  </td>
                 </tr>
               ))}
             </tbody>
